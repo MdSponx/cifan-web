@@ -662,14 +662,14 @@ html {
 
 /* Content area adjustments for floating sidebar */
 .content-with-sidebar {
-  margin-left: 21rem; /* 320px sidebar + 16px gap */
+  padding-left: 20rem; /* 320px sidebar offset */
   margin-top: 6rem; /* 96px - align with sidebar top position */
   transition: margin-left 0.3s ease-in-out;
 }
 
 @media (max-width: 1023px) {
   .content-with-sidebar {
-    margin-left: 0;
+    padding-left: 0;
     margin-top: 0;
   }
   
@@ -699,6 +699,21 @@ html {
   }
 }
 
+/* Full width content utilities */
+.full-width-content {
+  width: 100%;
+  max-width: none;
+}
+
+.sidebar-offset {
+  padding-left: 20rem; /* 320px */
+}
+
+@media (max-width: 1023px) {
+  .sidebar-offset {
+    padding-left: 0;
+  }
+}
 /* Line clamp utility for text truncation */
 .line-clamp-1 {
   overflow: hidden;

@@ -45,13 +45,13 @@ const UserZoneLayout: React.FC<UserZoneLayoutProps> = ({
 
       {/* Main Layout Container */}
       <div className="flex min-h-screen pt-24">
-        {/* Sidebar Container - Fixed width with consistent spacing */}
+        {/* Sidebar Container - Fixed 320px width */}
         <div className={`
-          fixed lg:sticky top-24 left-0 h-[calc(100vh-6rem)] z-50 lg:z-auto
+          fixed lg:fixed top-24 left-0 w-80 h-[calc(100vh-6rem)] z-50 lg:z-auto
           transition-transform duration-300 ease-in-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         `}>
-          <div className="w-72 h-full p-4 lg:pr-2 lg:pl-6 lg:py-6">
+          <div className="w-full h-full p-4 lg:p-6">
             <UserZoneSidebar
               currentPage={currentPage}
               isOpen={sidebarOpen}
@@ -61,17 +61,16 @@ const UserZoneLayout: React.FC<UserZoneLayoutProps> = ({
           </div>
         </div>
 
-        {/* Main Content Area - Flexible with proper constraints */}
+        {/* Main Content Area - Full width with proper offset */}
         <div className={`
-          flex-1 min-w-0
-          lg:ml-80
+          w-full lg:pl-80
           transition-all duration-300 ease-in-out
         `}>
-          {/* Content Container with consistent padding and max-width */}
+          {/* Content Container with full width utilization */}
           <div className="min-h-[calc(100vh-6rem)]">
             <div className="
-              w-full max-w-none
-              px-4 sm:px-6 lg:px-8 xl:px-12
+              w-full
+              px-4 sm:px-6 lg:px-8 xl:px-10 2xl:px-12
               py-6 lg:py-8
             ">
               {/* Content Wrapper for proper vertical alignment */}
