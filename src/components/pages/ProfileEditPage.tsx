@@ -68,7 +68,7 @@ const ProfileEditPage: React.FC<ProfileEditPageProps> = ({ onSidebarToggle }) =>
 
       {/* Success Message */}
       {isComplete && (
-        <div className="glass-container rounded-xl p-6 border-l-4 border-green-400">
+        <div className="glass-container rounded-xl p-6 border-l-4 border-green-400 w-full">
           <div className="flex items-center space-x-3">
             <CheckCircle className="w-6 h-6 text-green-400" />
             <div>
@@ -85,7 +85,7 @@ const ProfileEditPage: React.FC<ProfileEditPageProps> = ({ onSidebarToggle }) =>
 
       {/* Error Message */}
       {error && (
-        <div className="glass-container rounded-xl p-6 border-l-4 border-red-400">
+        <div className="glass-container rounded-xl p-6 border-l-4 border-red-400 w-full">
           <div className="flex items-center space-x-3">
             <span className="text-red-400 text-xl">❌</span>
             <div>
@@ -102,7 +102,7 @@ const ProfileEditPage: React.FC<ProfileEditPageProps> = ({ onSidebarToggle }) =>
 
       {/* Current Profile Info */}
       {userProfile && (
-        <div className="glass-container rounded-xl p-6">
+        <div className="glass-container rounded-xl p-6 w-full">
           <h3 className={`text-lg ${getClass('header')} text-white mb-4`}>
             {t('profile.currentInfo')}
           </h3>
@@ -162,7 +162,7 @@ const ProfileEditPage: React.FC<ProfileEditPageProps> = ({ onSidebarToggle }) =>
       )}
 
       {/* Edit Form */}
-      <div className="glass-container rounded-xl p-6 sm:p-8">
+      <div className="glass-container rounded-xl p-6 sm:p-8 w-full">
         <ProfileForm
           initialData={getInitialData()}
           onSubmit={handleSubmit}

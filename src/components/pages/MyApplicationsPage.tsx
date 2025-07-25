@@ -256,7 +256,7 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
 
       {/* No Applications State */}
       {!loading && applications.length === 0 && (
-        <div className="glass-container rounded-2xl p-8 sm:p-12 text-center">
+        <div className="glass-container rounded-2xl p-8 sm:p-12 text-center w-full">
           <div className="text-6xl mb-6">🎬</div>
           <h2 className={`text-2xl ${getClass('header')} mb-4 text-white`}>
             {currentContent.noApplications}
@@ -281,7 +281,7 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
           {applications.map((application) => (
             <div
               key={application.id}
-              className="glass-container rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-[#FCB283]/20"
+              className="glass-container rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-[#FCB283]/20 w-full"
               onClick={() => handleApplicationClick(application.id)}
             >
               {/* Poster Image */}
