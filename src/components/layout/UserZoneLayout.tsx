@@ -64,14 +64,14 @@ const UserZoneLayout: React.FC<UserZoneLayoutProps> = ({
         {/* Main Content Area - Flexible with proper constraints */}
         <div className={`
           flex-1 min-w-0
-          lg:ml-72
+          lg:ml-80
           transition-all duration-300 ease-in-out
         `}>
           {/* Content Container with consistent padding and max-width */}
           <div className="min-h-[calc(100vh-6rem)]">
             <div className="
-              max-w-5xl mx-auto 
-              px-4 sm:px-6 lg:px-6 xl:px-8
+              w-full max-w-none
+              px-4 sm:px-6 lg:px-8 xl:px-12
               py-6 lg:py-8
             ">
               {/* Content Wrapper for proper vertical alignment */}
