@@ -108,7 +108,7 @@ const Navigation = () => {
               
                 {/* Auth Dropdown */}
                 {showAuthMenu && (
-                  <div className="absolute right-0 mt-2 w-48 glass-container rounded-xl p-2 border border-white/20">
+                  <div className="absolute right-0 top-full mt-2 w-48 glass-container rounded-xl p-2 border border-white/20 z-50">
                     {isAuthenticated ? (
                       <>
                         <div className="px-4 py-2 border-b border-white/20 mb-2">
