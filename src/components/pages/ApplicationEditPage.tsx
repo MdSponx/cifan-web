@@ -575,7 +575,7 @@ const ApplicationEditPage: React.FC<ApplicationEditPageProps> = ({
   const isWorldCategory = application.competitionCategory === 'world';
 
   return (
-    <div className="space-y-6 sm:space-y-8 pt-24">
+    <div className="space-y-6 sm:space-y-8">
       {/* User Zone Header */}
       <UserZoneHeader
         title={application.filmTitle}
@@ -613,7 +613,7 @@ const ApplicationEditPage: React.FC<ApplicationEditPageProps> = ({
       <div className="space-y-6 sm:space-y-8">
         
         {/* Section 1: Film Information */}
-        <FormSection title={currentContent.filmInfoTitle} icon="🎬">
+        <FormSection title={currentContent.filmInfoTitle} icon="🎬" className="w-full">
             <div className="space-y-6">
               {/* Film Titles */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -711,7 +711,7 @@ const ApplicationEditPage: React.FC<ApplicationEditPageProps> = ({
         </FormSection>
 
         {/* Section 2: Submitter/Director Information */}
-        <FormSection title={isWorldCategory ? currentContent.directorInfoTitle : currentContent.submitterInfoTitle} icon="👤">
+        <FormSection title={isWorldCategory ? currentContent.directorInfoTitle : currentContent.submitterInfoTitle} icon="👤" className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className={`block text-white/90 ${getClass('body')} mb-2`}>
@@ -884,10 +884,11 @@ const ApplicationEditPage: React.FC<ApplicationEditPageProps> = ({
           submitterUniversityName={application.universityName}
           error={formErrors.crewMembers}
           isWorldForm={isWorldCategory}
+          className="w-full"
         />
 
         {/* Section 4: File Management */}
-        <FormSection title={currentContent.filesTitle} icon="📁">
+        <FormSection title={currentContent.filesTitle} icon="📁" className="w-full">
             <div className="space-y-6">
               <FileReplacer
                 applicationId={application.id}
