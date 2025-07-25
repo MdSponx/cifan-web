@@ -312,10 +312,7 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
 
                   {/* Action Buttons - Hidden by default, shown on hover */}
                   <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
-                    <AnimatedButton
-                      variant="primary"
-                      size="small"
-                      icon="👁️"
+                    <button
                       onClick={(e) => {
                         e.stopPropagation();
                         window.location.hash = `#application-detail/${application.id}`;
@@ -323,16 +320,14 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }, 100);
                       }}
-                      className="flex-1"
+                      className="w-8 h-8 bg-blue-500/80 hover:bg-blue-600 rounded-full flex items-center justify-center text-white transition-colors"
+                      title={currentContent.viewDetails}
                     >
-                      {currentContent.viewDetails}
-                    </AnimatedButton>
+                      👁️
+                    </button>
                     
                     {application.status === 'draft' && (
-                      <AnimatedButton
-                        variant="secondary"
-                        size="small"
-                        icon="✏️"
+                      <button
                         onClick={(e) => {
                           e.stopPropagation();
                           window.location.hash = `#application-edit/${application.id}`;
@@ -340,10 +335,11 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }, 100);
                         }}
-                        className="flex-1"
+                        className="w-8 h-8 bg-orange-500/80 hover:bg-orange-600 rounded-full flex items-center justify-center text-white transition-colors"
+                        title={currentContent.editApplication}
                       >
-                        {currentContent.editApplication}
-                      </AnimatedButton>
+                        ✏️
+                      </button>
                     )}
                   </div>
                 </div>
