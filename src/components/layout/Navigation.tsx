@@ -152,11 +152,7 @@ const Navigation = () => {
                 {showAuthMenu && (
                   <div 
                     data-auth-dropdown
-                    className={`absolute right-0 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999] ${
-                      dropdownPosition === 'down' 
-                        ? 'top-full mt-2' 
-                        : 'bottom-full mb-2'
-                    }`}
+                    className="absolute right-0 top-full mt-2 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999]"
                   >
                     {isAuthenticated ? (
                       <>
@@ -175,8 +171,8 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <User size={16} />
-                          Profile
+                          <span>👤</span>
+                          <span>Profile</span>
                         </button>
                         <button 
                           onClick={() => {
@@ -185,16 +181,16 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <span className="text-sm">📋</span>
-                          My Applications
+                          <span>📋</span>
+                          <span>My Applications</span>
                         </button>
                         <div className="border-t border-white/20 my-2"></div>
                         <button 
                           onClick={handleSignOut}
                           className={`w-full text-left px-4 py-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <LogOut size={14} />
-                          Sign Out
+                          <span>🚪</span>
+                          <span>Sign Out</span>
                         </button>
                       </>
                     ) : (
@@ -206,8 +202,8 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <span className="text-sm">🔑</span>
-                          {t('navigation.signIn')}
+                          <span>🔑</span>
+                          <span>{t('navigation.signIn')}</span>
                         </button>
                         <button 
                           onClick={() => {
@@ -216,8 +212,8 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <User size={16} />
-                          {t('navigation.signUp')}
+                          <span>👤</span>
+                          <span>{t('navigation.signUp')}</span>
                         </button>
                       </>
                     )}
@@ -298,7 +294,7 @@ const Navigation = () => {
                     }}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
-                    <span className="text-sm inline mr-2">🔑</span>
+                    <span className="inline mr-2">🔑</span>
                     {t('navigation.signIn')}
                   </button>
                   <button 
