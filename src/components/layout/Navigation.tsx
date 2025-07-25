@@ -7,7 +7,6 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showAuthMenu, setShowAuthMenu] = useState(false);
-  const [dropdownPosition, setDropdownPosition] = useState<'down' | 'up'>('down');
   const { t, i18n } = useTranslation();
   const { user, userProfile, isAuthenticated, signOut } = useAuth();
   
@@ -27,22 +26,8 @@ const Navigation = () => {
 
   // Smart positioning for dropdown
   useEffect(() => {
-    if (showAuthMenu) {
-      const authButton = document.querySelector('[data-auth-button]');
-      if (authButton) {
-        const rect = authButton.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        const spaceBelow = viewportHeight - rect.bottom;
-        const spaceAbove = rect.top;
-        
-        // Dropdown height is approximately 200px for authenticated users, 120px for non-authenticated
-        const dropdownHeight = isAuthenticated ? 200 : 120;
-        
-        // Use downward positioning if there's enough space, otherwise go upward
-        setDropdownPosition(spaceBelow >= dropdownHeight ? 'down' : 'up');
-      }
-    }
-  }, [showAuthMenu, isAuthenticated]);
+    // Removed smart positioning - always open downward
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -152,11 +137,7 @@ const Navigation = () => {
                 {showAuthMenu && (
                   <div 
                     data-auth-dropdown
-                    className={`absolute right-0 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999] ${
-                      dropdownPosition === 'down' 
-                        ? 'top-full mt-2' 
-                        : 'bottom-full mb-2'
-                    }`}
+                    className="absolute right-0 top-full mt-2 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999]"
                   >
                     {isAuthenticated ? (
                       <>
@@ -175,7 +156,7 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <User size={16} />
+                          <span>👤</span>
                           Profile
                         </button>
                         <button 
@@ -185,7 +166,7 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <span className="text-sm">📋</span>
+                          <span>📋</span>
                           My Applications
                         </button>
                         <div className="border-t border-white/20 my-2"></div>
@@ -193,7 +174,7 @@ const Navigation = () => {
                           onClick={handleSignOut}
                           className={`w-full text-left px-4 py-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <LogOut size={14} />
+                          <span>🚪</span>
                           Sign Out
                         </button>
                       </>
@@ -206,7 +187,7 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <span className="text-sm">🔑</span>
+                          <span>🔑</span>
                           {t('navigation.signIn')}
                         </button>
                         <button 
@@ -216,7 +197,7 @@ const Navigation = () => {
                           }}
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          <User size={16} />
+                          <span>👤</span>
                           {t('navigation.signUp')}
                         </button>
                       </>
