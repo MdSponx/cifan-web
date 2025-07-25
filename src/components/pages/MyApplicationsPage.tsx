@@ -277,15 +277,15 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
 
       {/* Applications Grid */}
       {!loading && applications.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6">
           {applications.map((application) => (
             <div
               key={application.id}
-              className="glass-container rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-[#FCB283]/20 w-full"
+              className="glass-container rounded-lg sm:rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-[#FCB283]/20 w-full"
               onClick={() => handleApplicationClick(application.id)}
             >
               {/* Poster Image */}
-              <div className="relative aspect-[4/5] bg-white/5">
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] bg-white/5">
                 {application.files.posterFile?.url ? (
                   <img
                     src={application.files.posterFile.url}
@@ -319,38 +319,38 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
                 )}
                 
                 {/* Status Badge Overlay */}
-                <div className="absolute top-2 right-2">
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium border backdrop-blur-sm ${getStatusBadgeColor(application.status)}`}>
+                <div className="absolute top-1 right-1 sm:top-2 sm:right-2">
+                  <span className={`px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs font-medium border backdrop-blur-sm ${getStatusBadgeColor(application.status)}`}>
                     {application.status === 'submitted' ? currentContent.submitted : currentContent.draft}
                   </span>
                 </div>
 
                 {/* Category Logo Overlay */}
-                <div className="absolute top-2 left-2">
+                <div className="absolute top-1 left-1 sm:top-2 sm:left-2">
                   <img
                     src={getCategoryLogo(application.competitionCategory)}
                     alt={`${application.competitionCategory} logo`}
-                    className="h-6 w-auto object-contain opacity-90"
+                    className="h-4 sm:h-6 w-auto object-contain opacity-90"
                   />
                 </div>
               </div>
 
               {/* Card Content */}
-              <div className="p-3">
+              <div className="p-2 sm:p-3">
                 {/* Film Title */}
-                <h3 className={`text-sm ${getClass('header')} text-white mb-1 line-clamp-2 leading-tight`}>
+                <h3 className={`text-xs sm:text-sm ${getClass('header')} text-white mb-1 line-clamp-2 leading-tight`}>
                   {currentLanguage === 'th' && application.filmTitleTh 
                     ? application.filmTitleTh 
                     : application.filmTitle}
                 </h3>
 
                 {/* Category */}
-                <p className={`${getClass('body')} text-[#FCB283] text-xs mb-2 line-clamp-1`}>
+                <p className={`${getClass('body')} text-[#FCB283] text-xs mb-1 sm:mb-2 line-clamp-1`}>
                   {currentContent.categories[application.competitionCategory as keyof typeof currentContent.categories]}
                 </p>
 
                 {/* Film Details */}
-                <div className="space-y-1 mb-2">
+                <div className="space-y-0.5 sm:space-y-1 mb-1 sm:mb-2">
                   <div className="flex justify-between text-xs">
                     <span className="text-white/60">
                       {currentLanguage === 'th' ? 'ประเภท:' : 'Format:'}
@@ -370,8 +370,8 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
                 </div>
 
                 {/* Date */}
-                <div className="pt-2 border-t border-white/10">
-                  <p className="text-xs text-white/60 text-center">
+                <div className="pt-1 sm:pt-2 border-t border-white/10">
+                  <p className="text-xs text-white/60 text-center leading-tight">
                     {application.status === 'submitted' 
                       ? (currentLanguage === 'th' ? 'ส่งเมื่อ: ' : 'Submitted: ') + formatDate(application.submittedAt)
                       : (currentLanguage === 'th' ? 'แก้ไขล่าสุด: ' : 'Last modified: ') + formatDate(application.lastModified)
