@@ -61,8 +61,8 @@ const Footer = () => {
           <div>
             <h4 className="text-base sm:text-lg subtitle-en text-white mb-4 sm:mb-6">Connect</h4>
             <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6 body-en text-sm">
-              <p className="text-white/70">📧 info@cifan.com</p>
-              <p className="text-white/70">📱 +66 64-860-9135</p>
+              <p className="text-white/70">📧 contact@cifanfest.com</p>
+              <p className="text-white/70">📱 +66 86-346-6425</p>
               <p className="text-white/70">📍 Mueang, Chiang Mai 50200</p>
             </div>
             
