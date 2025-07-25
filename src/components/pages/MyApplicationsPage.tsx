@@ -309,43 +309,43 @@ const MyApplicationsPage: React.FC<MyApplicationsPageProps> = ({ onSidebarToggle
                     {application.status === 'submitted' ? currentContent.submittedOn : currentContent.lastModified}: {' '}
                     {formatDate(application.status === 'submitted' ? application.submittedAt : application.lastModified)}
                   </p>
-                </div>
-              </div>
 
-              {/* Action Buttons - Hover Overlay */}
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="space-y-3">
-                  <AnimatedButton
-                    variant="primary"
-                    size="small"
-                    icon="👁️"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.location.hash = `#application-detail/${application.id}`;
-                      setTimeout(() => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }, 100);
-                    }}
-                  >
-                    {currentContent.viewDetails}
-                  </AnimatedButton>
-                  
-                  {application.status === 'draft' && (
+                  {/* Action Buttons - Hidden by default, shown on hover */}
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-2">
                     <AnimatedButton
-                      variant="secondary"
+                      variant="primary"
                       size="small"
-                      icon="✏️"
+                      icon="👁️"
                       onClick={(e) => {
                         e.stopPropagation();
-                        window.location.hash = `#application-edit/${application.id}`;
+                        window.location.hash = `#application-detail/${application.id}`;
                         setTimeout(() => {
                           window.scrollTo({ top: 0, behavior: 'smooth' });
                         }, 100);
                       }}
+                      className="flex-1"
                     >
-                      {currentContent.editApplication}
+                      {currentContent.viewDetails}
                     </AnimatedButton>
-                  )}
+                    
+                    {application.status === 'draft' && (
+                      <AnimatedButton
+                        variant="secondary"
+                        size="small"
+                        icon="✏️"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.location.hash = `#application-edit/${application.id}`;
+                          setTimeout(() => {
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }, 100);
+                        }}
+                        className="flex-1"
+                      >
+                        {currentContent.editApplication}
+                      </AnimatedButton>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
