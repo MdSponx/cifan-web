@@ -7,6 +7,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showAuthMenu, setShowAuthMenu] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState<'down' | 'up'>('down');
   const { t, i18n } = useTranslation();
   const { user, userProfile, isAuthenticated, signOut } = useAuth();
   
@@ -24,6 +25,46 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Smart positioning for dropdown
+  useEffect(() => {
+    if (showAuthMenu) {
+      const authButton = document.querySelector('[data-auth-button]');
+      if (authButton) {
+        const rect = authButton.getBoundingClientRect();
+        const viewportHeight = window.innerHeight;
+        const spaceBelow = viewportHeight - rect.bottom;
+        const spaceAbove = rect.top;
+        
+        // Dropdown height is approximately 200px for authenticated users, 120px for non-authenticated
+        const dropdownHeight = isAuthenticated ? 200 : 120;
+        
+        // Use downward positioning if there's enough space, otherwise go upward
+        setDropdownPosition(spaceBelow >= dropdownHeight ? 'down' : 'up');
+      }
+    }
+  }, [showAuthMenu, isAuthenticated]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const authButton = document.querySelector('[data-auth-button]');
+      const dropdown = document.querySelector('[data-auth-dropdown]');
+      
+      if (showAuthMenu && 
+          authButton && !authButton.contains(event.target as Node) &&
+          dropdown && !dropdown.contains(event.target as Node)) {
+        setShowAuthMenu(false);
+      }
+    };
+
+    if (showAuthMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showAuthMenu]);
   const toggleLanguage = () => {
     const newLanguage = i18n.language === 'en' ? 'th' : 'en';
     i18n.changeLanguage(newLanguage);
@@ -84,6 +125,7 @@ const Navigation = () => {
               {/* Auth Button with Dropdown */}
               <div className="relative">
                 <button 
+                  data-auth-button
                   className="liquid-glass-button-pill"
                   onClick={() => setShowAuthMenu(!showAuthMenu)}
                 >
@@ -108,7 +150,14 @@ const Navigation = () => {
               
                 {/* Auth Dropdown */}
                 {showAuthMenu && (
-                  <div className="absolute right-0 top-full mt-2 w-48 glass-container rounded-xl p-2 border border-white/20 z-50">
+                  <div 
+                    data-auth-dropdown
+                    className={`absolute right-0 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999] ${
+                      dropdownPosition === 'down' 
+                        ? 'top-full mt-2' 
+                        : 'bottom-full mb-2'
+                    }`}
+                  >
                     {isAuthenticated ? (
                       <>
                         <div className="px-4 py-2 border-b border-white/20 mb-2">
@@ -124,23 +173,25 @@ const Navigation = () => {
                             setShowAuthMenu(false);
                             window.location.hash = '#profile/edit';
                           }}
-                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')}`}
+                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          👤 Profile
+                          <User size={16} />
+                          Profile
                         </button>
                         <button 
                           onClick={() => {
                             setShowAuthMenu(false);
                             window.location.hash = '#my-applications';
                           }}
-                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')}`}
+                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          📋 My Applications
+                          <span className="text-sm">📋</span>
+                          My Applications
                         </button>
                         <div className="border-t border-white/20 my-2"></div>
                         <button 
                           onClick={handleSignOut}
-                          className={`w-full text-left px-4 py-2 text-red-400 hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
+                          className={`w-full text-left px-4 py-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
                           <LogOut size={14} />
                           Sign Out
@@ -153,18 +204,20 @@ const Navigation = () => {
                             setShowAuthMenu(false);
                             window.location.hash = '#auth/signin';
                           }}
-                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')}`}
+                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          🔑 {t('navigation.signIn')}
+                          <span className="text-sm">🔑</span>
+                          {t('navigation.signIn')}
                         </button>
                         <button 
                           onClick={() => {
                             setShowAuthMenu(false);
                             window.location.hash = '#auth/signup';
                           }}
-                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')}`}
+                          className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
-                          👤 {t('navigation.signUp')}
+                          <User size={16} />
+                          {t('navigation.signUp')}
                         </button>
                       </>
                     )}
@@ -225,13 +278,15 @@ const Navigation = () => {
                     }}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
-                    👤 Profile
+                    <User size={16} className="inline mr-2" />
+                    Profile
                   </button>
                   <button 
                     onClick={handleSignOut}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
-                    🚪 Sign Out
+                    <LogOut size={16} className="inline mr-2" />
+                    Sign Out
                   </button>
                 </>
               ) : (
@@ -243,7 +298,8 @@ const Navigation = () => {
                     }}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
-                    🔑 {t('navigation.signIn')}
+                    <span className="text-sm inline mr-2">🔑</span>
+                    {t('navigation.signIn')}
                   </button>
                   <button 
                     onClick={() => {
@@ -252,7 +308,8 @@ const Navigation = () => {
                     }}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
-                    👤 {t('navigation.signUp')}
+                    <User size={16} className="inline mr-2" />
+                    {t('navigation.signUp')}
                   </button>
                 </>
               )}
