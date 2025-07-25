@@ -242,8 +242,11 @@ const Navigation = () => {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`lg:hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
-          <div className="py-4 space-y-3 glass-container rounded-2xl m-4 p-6">
+        <div className={`lg:hidden fixed inset-x-0 top-16 sm:top-20 z-40 transition-all duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}>
+          <div className="bg-black/50 backdrop-blur-sm min-h-screen p-4">
+            <div className="glass-container rounded-2xl p-6 max-h-[calc(100vh-120px)] overflow-y-auto">
             <MobileNavLink href="#home">{t('navigation.home')}</MobileNavLink>
             <MobileNavLink href="#about">{t('navigation.about')}</MobileNavLink>
             <MobileNavLink href="#coming-soon">{t('navigation.programs')}</MobileNavLink>
@@ -253,12 +256,15 @@ const Navigation = () => {
             <MobileNavLink href="#coming-soon">{t('navigation.news')}</MobileNavLink>
             <MobileNavLink href="#coming-soon">{t('navigation.contact')}</MobileNavLink>
             
-            <div className="border-t border-white/20 pt-4 space-y-3">
+            <div className="border-t border-white/20 pt-4 mt-4 space-y-3">
               {isAuthenticated ? (
                 <>
-                  <div className="text-center py-2">
+                  <div className="text-center py-3 bg-white/5 rounded-lg mb-3">
                     <p className={`text-white/90 ${getTypographyClass('nav')} text-sm`}>
                       {user?.displayName || user?.email}
+                    </p>
+                    <p className={`text-white/60 ${getTypographyClass('nav')} text-xs mt-1`}>
+                      {user?.email}
                     </p>
                   </div>
                   <button 
@@ -266,9 +272,9 @@ const Navigation = () => {
                       setIsOpen(false);
                       window.location.hash = '#profile/edit';
                     }}
-                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                    className={`w-full text-left px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                   >
-                    <User size={16} className="inline mr-2" />
+                    <User size={16} />
                     {t('navigation.profile') || 'Profile'}
                   </button>
                   <button 
@@ -276,16 +282,16 @@ const Navigation = () => {
                       setIsOpen(false);
                       window.location.hash = '#my-applications';
                     }}
-                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                    className={`w-full text-left px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                   >
-                    <span className="text-sm inline mr-2">📋</span>
+                    <span className="text-sm">📋</span>
                     {t('navigation.myApplications') || 'My Applications'}
                   </button>
                   <button 
                     onClick={handleSignOut}
-                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                    className={`w-full text-left px-4 py-3 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                   >
-                    <LogOut size={16} className="inline mr-2" />
+                    <LogOut size={16} />
                     {t('navigation.signOut') || 'Sign Out'}
                   </button>
                 </>
@@ -296,9 +302,9 @@ const Navigation = () => {
                       setIsOpen(false);
                       window.location.hash = '#auth/signin';
                     }}
-                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                    className={`w-full text-left px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                   >
-                    <span className="text-sm inline mr-2">🔑</span>
+                    <span className="text-sm">🔑</span>
                     {t('navigation.signIn')}
                   </button>
                   <button 
@@ -306,13 +312,14 @@ const Navigation = () => {
                       setIsOpen(false);
                       window.location.hash = '#auth/signup';
                     }}
-                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                    className={`w-full text-left px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                   >
-                    <User size={16} className="inline mr-2" />
+                    <User size={16} />
                     {t('navigation.signUp')}
                   </button>
                 </>
               )}
+            </div>
             </div>
           </div>
         </div>
