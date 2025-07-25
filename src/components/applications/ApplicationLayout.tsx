@@ -460,7 +460,7 @@ const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({ application }) =>
         {canEdit && (
           <AnimatedButton
             variant="outline"
-            size="medium"
+            size="small"
             icon="🗑️"
             onClick={handleDeleteApplication}
             className={isProcessing ? 'opacity-50 cursor-not-allowed' : ''}
@@ -474,10 +474,10 @@ const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({ application }) =>
 
         {/* Submit + Save Draft Buttons - Bottom Right */}
         {canEdit && (
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <AnimatedButton
               variant="secondary"
-              size="medium"
+              size="small"
               icon="💾"
               onClick={handleSaveDraft}
               className={isProcessing ? 'opacity-50 cursor-not-allowed' : ''}
@@ -486,7 +486,7 @@ const ApplicationLayout: React.FC<ApplicationLayoutProps> = ({ application }) =>
             </AnimatedButton>
             <AnimatedButton
               variant="primary"
-              size="medium"
+              size="small"
               icon="📤"
               onClick={handleSubmitApplication}
               className={isProcessing ? 'opacity-50 cursor-not-allowed' : ''}

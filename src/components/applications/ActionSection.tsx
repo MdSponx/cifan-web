@@ -201,7 +201,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
                     {canEdit && (
                       <AnimatedButton
                         variant="secondary"
-                        size="large"
+                        size="medium"
                         icon="✏️"
                         onClick={onEditToggle}
                       >
@@ -210,7 +210,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
                     )}
                     <AnimatedButton
                       variant="primary"
-                      size="large"
+                      size="medium"
                       icon="📤"
                       onClick={handleSubmitApplication}
                     >
@@ -223,7 +223,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
                 {application.status === 'submitted' && (
                   <AnimatedButton
                     variant="secondary"
-                    size="large"
+                    size="medium"
                     icon="📄"
                     onClick={handleDownloadApplication}
                   >
@@ -231,7 +231,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
                   </AnimatedButton>
                 )}
               </>
-            )}
+                    size="medium"
           </div>
 
           {/* Secondary Actions */}
@@ -242,7 +242,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
               {application.status === 'draft' && (
                 <AnimatedButton
                   variant="outline"
-                  size="medium"
+                  size="small"
                   icon="🗑️"
                   onClick={handleDeleteDraft}
                 >
@@ -254,7 +254,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
               {application.status === 'submitted' && (
                 <AnimatedButton
                   variant="outline"
-                  size="medium"
+                  size="small"
                   icon="↩️"
                   onClick={handleWithdrawApplication}
                 >

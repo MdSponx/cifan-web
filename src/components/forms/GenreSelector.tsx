@@ -98,23 +98,23 @@ const GenreSelector: React.FC<GenreSelectorProps> = ({
       )}
       
       {/* Genre Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 overflow-visible relative z-10 min-h-fit">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4 mb-4 overflow-visible relative z-10 min-h-fit">
         {GENRE_OPTIONS.map((option) => (
           <button
             key={option.value}
             type="button"
             onClick={() => handleGenreToggle(option.value)}
-            className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-200 ${
+            className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-200 min-h-[60px] sm:min-h-[80px] ${
               isSelected(option.value)
                 ? 'bg-gradient-to-r from-[#AA4626] to-[#FCB283] border-[#FCB283] text-white shadow-lg'
                 : 'bg-white/5 border-white/20 text-white/80 hover:border-[#FCB283]/50 hover:bg-white/10'
             }`}
           >
-            <div className="flex flex-col items-center space-y-1 sm:space-y-2">
-              <span className="text-lg sm:text-2xl">
+            <div className="flex flex-col items-center justify-center space-y-1 h-full">
+              <span className="text-base sm:text-lg md:text-xl">
                 {getGenreEmoji(option.value)}
               </span>
-              <span className={`text-xs ${getClass('body')} text-center leading-tight px-1`}>
+              <span className={`text-xs sm:text-sm ${getClass('body')} text-center leading-tight px-1`}>
                 {option.label[currentLanguage]}
               </span>
             </div>
@@ -125,15 +125,15 @@ const GenreSelector: React.FC<GenreSelectorProps> = ({
         <button
           type="button"
           onClick={handleOtherToggle}
-          className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-200 ${
+          className={`p-2 sm:p-3 rounded-lg border-2 transition-all duration-200 min-h-[60px] sm:min-h-[80px] ${
             isOtherSelected
               ? 'bg-gradient-to-r from-[#AA4626] to-[#FCB283] border-[#FCB283] text-white shadow-lg'
               : 'bg-white/5 border-white/20 text-white/80 hover:border-[#FCB283]/50 hover:bg-white/10'
           }`}
         >
-          <div className="flex flex-col items-center space-y-1 sm:space-y-2">
-            <span className="text-lg sm:text-2xl">✨</span>
-            <span className={`text-xs ${getClass('body')} text-center leading-tight px-1`}>
+          <div className="flex flex-col items-center justify-center space-y-1 h-full">
+            <span className="text-base sm:text-lg md:text-xl">✨</span>
+            <span className={`text-xs sm:text-sm ${getClass('body')} text-center leading-tight px-1`}>
               {currentLanguage === 'th' ? 'อื่นๆ' : 'Other'}
             </span>
           </div>
@@ -162,7 +162,7 @@ const GenreSelector: React.FC<GenreSelectorProps> = ({
           <p className={`text-white/70 ${getClass('body')} mb-2 text-sm`}>
             {currentLanguage === 'th' ? 'แนวที่เลือก:' : 'Selected Genres:'}
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1 sm:gap-2">
             {value.map((genre, index) => {
               const option = GENRE_OPTIONS.find(opt => opt.value === genre);
               const displayName = option ? option.label[currentLanguage] : genre;
@@ -170,7 +170,7 @@ const GenreSelector: React.FC<GenreSelectorProps> = ({
               return (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-[#FCB283]/20 text-[#FCB283] rounded-full text-xs border border-[#FCB283]/30"
+                  className="px-2 sm:px-3 py-1 bg-[#FCB283]/20 text-[#FCB283] rounded-full text-xs border border-[#FCB283]/30"
                 >
                   {displayName}
                 </span>

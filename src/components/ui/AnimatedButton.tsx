@@ -26,9 +26,9 @@ const AnimatedButton: React.FC<AnimatedButtonProps> = ({
   };
 
   const sizeClasses = {
-    small: "px-4 py-2 text-sm rounded-lg",
-    medium: "px-6 py-3 text-base rounded-xl",
-    large: "px-8 py-4 text-lg rounded-2xl"
+    small: "px-3 py-2 text-xs sm:text-sm rounded-lg sm:px-4",
+    medium: "px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base rounded-lg sm:rounded-xl",
+    large: "px-6 py-3 text-base sm:px-8 sm:py-4 sm:text-lg rounded-xl sm:rounded-2xl"
   };
 
   return (
