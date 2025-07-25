@@ -12,7 +12,10 @@
     "signIn": "เข้าสู่ระบบ",
     "signUp": "สมัครสมาชิก",
     "settings": "ตั้งค่า",
-    "language": "TH"
+    "language": "TH",
+    "profile": "โปรไฟล์",
+    "myApplications": "ใบสมัครของฉัน",
+    "signOut": "ออกจากระบบ"
   },
   "hero": {
     "title": "CIFAN",

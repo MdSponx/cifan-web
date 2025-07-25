@@ -137,7 +137,7 @@ const Navigation = () => {
                 {showAuthMenu && (
                   <div 
                     data-auth-dropdown
-                    className="w-48 glass-container rounded-xl p-2 border border-white/20"
+                    className="w-48 glass-container rounded-xl p-2 border border-white/20 max-h-80 overflow-y-auto"
                     style={{
                       position: 'absolute',
                       top: '100%',
@@ -166,7 +166,7 @@ const Navigation = () => {
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
                           <span>👤</span>
-                          Profile
+                          {t('navigation.profile') || 'Profile'}
                         </button>
                         <button 
                           onClick={() => {
@@ -176,7 +176,7 @@ const Navigation = () => {
                           className={`w-full text-left px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
                           <span>📋</span>
-                          My Applications
+                          {t('navigation.myApplications') || 'My Applications'}
                         </button>
                         <div className="border-t border-white/20 my-2"></div>
                         <button 
@@ -184,7 +184,7 @@ const Navigation = () => {
                           className={`w-full text-left px-4 py-2 text-red-400 hover:bg-red-500/20 rounded-lg transition-colors ${getTypographyClass('nav')} flex items-center gap-2`}
                         >
                           <span>🚪</span>
-                          Sign Out
+                          {t('navigation.signOut') || 'Sign Out'}
                         </button>
                       </>
                     ) : (
@@ -269,14 +269,24 @@ const Navigation = () => {
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
                     <User size={16} className="inline mr-2" />
-                    Profile
+                    {t('navigation.profile') || 'Profile'}
+                  </button>
+                  <button 
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.location.hash = '#my-applications';
+                    }}
+                    className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
+                  >
+                    <span className="text-sm inline mr-2">📋</span>
+                    {t('navigation.myApplications') || 'My Applications'}
                   </button>
                   <button 
                     onClick={handleSignOut}
                     className={`w-full liquid-glass-button transition-colors ${getTypographyClass('nav')}`}
                   >
                     <LogOut size={16} className="inline mr-2" />
-                    Sign Out
+                    {t('navigation.signOut') || 'Sign Out'}
                   </button>
                 </>
               ) : (

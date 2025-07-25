@@ -12,7 +12,10 @@
     "signIn": "Sign In",
     "signUp": "Sign Up",
     "settings": "Settings",
-    "language": "EN"
+    "language": "EN",
+    "profile": "Profile",
+    "myApplications": "My Applications",
+    "signOut": "Sign Out"
   },
   "hero": {
     "title": "CIFAN",
