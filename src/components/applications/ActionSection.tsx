@@ -231,7 +231,7 @@ const ActionSection: React.FC<ActionSectionProps> = ({
                   </AnimatedButton>
                 )}
               </>
-                    size="medium"
+            )}
           </div>
 
           {/* Secondary Actions */}
