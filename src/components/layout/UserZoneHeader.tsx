@@ -84,31 +84,6 @@ const UserZoneHeader: React.FC<UserZoneHeaderProps> = ({
           
           {/* Custom Actions */}
           {children}
-
-          {/* User Avatar */}
-          <div className="hidden md:flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-[#FCB283] flex items-center justify-center">
-              {userProfile?.photoURL ? (
-                <img
-                  src={userProfile.photoURL}
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <span className="text-white font-bold text-sm">
-                  {userProfile?.fullNameEN?.charAt(0) || 'U'}
-                </span>
-              )}
-            </div>
-            <div className="hidden lg:block">
-              <p className={`${getClass('body')} text-white/90 text-sm font-medium`}>
-                {userProfile?.fullNameEN || 'User'}
-              </p>
-              <p className={`${getClass('body')} text-white/60 text-xs`}>
-                {userProfile?.email}
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
