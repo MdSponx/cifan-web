@@ -137,7 +137,16 @@ const Navigation = () => {
                 {showAuthMenu && (
                   <div 
                     data-auth-dropdown
-                    className="absolute right-0 top-full mt-2 w-48 glass-container rounded-xl p-2 border border-white/20 z-[9999]"
+                    className="w-48 glass-container rounded-xl p-2 border border-white/20"
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      right: '0',
+                      marginTop: '8px',
+                      zIndex: 99999,
+                      transform: 'none',
+                      bottom: 'auto'
+                    }}
                   >
                     {isAuthenticated ? (
                       <>
