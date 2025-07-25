@@ -24,7 +24,7 @@ import SignUpPage from './components/auth/SignUpPage';
 import SignInPage from './components/auth/SignInPage';
 import VerifyEmailPage from './components/auth/VerifyEmailPage';
 import ProfileSetupPage from './components/pages/ProfileSetupPage';
-import ProfileEditPage from './components/pages/ProfileEditPage.tsx';
+import ProfileEditPage from './components/pages/ProfileEditPage';
 import MyApplicationsPage from './components/pages/MyApplicationsPage';
 import ApplicationDetailPage from './components/pages/ApplicationDetailPage';
 import ApplicationEditPage from './components/pages/ApplicationEditPage';
